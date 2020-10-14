@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import QuestionParser from '@/components/QuestionParser'
+import QuestionParser from '@/views/parse'
 
 export default {
   name: 'App',

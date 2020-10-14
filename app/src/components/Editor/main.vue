@@ -5,18 +5,49 @@
 <script>
 export default {
   name: 'Editor',
-  created() {
-
+  props: {
+    value: {
+      type: String,
+      required: true
+    }
+  },
+  data() {
+    return {
+    }
+  },
+  computed: {
+    text: {
+      get() {
+        return this.value
+      },
+      set(newVal) {
+        this.$emit('input', newVal)
+      }
+    }
   },
   mounted() {
-    window.tinymce.init({
-      target: this.$refs.textarea,
-      menubar: null,
-      plugins: 'code',
-      toolbar: null,
-      branding: false,
-      auto_focus: true
-    })
+    this.init()
+  },
+  methods: {
+    init() {
+      window.tinymce.init({
+        target: this.$refs.textarea,
+        height: 600,
+        menubar: [],
+        plugins: 'code',
+        toolbar: 'code',
+        branding: false,
+        setup: (editor) => {
+          this.editor = editor
+          editor.on('init', () => {
+            editor.setContent(this.text, { format: 'html' })
+          })
+          this.editor.on('NodeChange input', () => {
+            this.text = editor.getContent()
+          })
+        }
+      })
+    }
   }
 }
 </script>

@@ -7,6 +7,7 @@
 <script>
 import { debounce } from '@/utils'
 import { parse } from '@/parser'
+// import template from '@/config/template.txt'
 
 export default {
   data() {
