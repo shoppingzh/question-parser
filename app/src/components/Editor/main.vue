@@ -34,9 +34,11 @@ export default {
         target: this.$refs.textarea,
         height: 600,
         menubar: [],
-        plugins: 'code',
-        toolbar: 'code',
+        plugins: 'code paste',
+        toolbar: 'code paste',
+        language: 'zh_CN',
         branding: false,
+        paste_word_valid_elements: 'p',
         setup: (editor) => {
           this.editor = editor
           editor.on('init', () => {
