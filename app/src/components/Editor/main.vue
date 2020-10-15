@@ -9,6 +9,10 @@ export default {
     value: {
       type: String,
       required: true
+    },
+    tinymceOptions: {
+      type: Object,
+      default: () => ({})
     }
   },
   data() {
@@ -34,11 +38,11 @@ export default {
         target: this.$refs.textarea,
         height: 600,
         menubar: [],
-        plugins: 'code paste',
-        toolbar: 'code paste',
-        language: 'zh_CN',
+        plugins: 'code image paste',
+        toolbar: 'code image',
+        language: 'zh_cn',
         branding: false,
-        paste_word_valid_elements: 'p',
+        ...this.tinymceOptions,
         setup: (editor) => {
           this.editor = editor
           editor.on('init', () => {
