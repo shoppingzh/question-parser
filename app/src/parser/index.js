@@ -1,4 +1,4 @@
-import { parseArea, parseLines } from './base'
+import { parseArea } from './util'
 
 /**
  * 解析选择项
@@ -32,11 +32,9 @@ export function parseCorrectAnswer(text) {
  * @param {String} text 题目文本
  */
 export function parse(text) {
+  const areas = []
   parseArea(text).forEach(area => {
-    parseLines(area).forEach(line => {
-      console.log(line)
-    })
-    console.log('============== END ==============')
+    areas.push(area)
   })
-  return null
+  return areas
 }
